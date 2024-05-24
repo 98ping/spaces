@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Selection Screen</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/settings.css" th:href="@{/css/settings.css}"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="settings-container">
+    <div class="sidebar">
+        <div class="sidebar-header">Settings</div>
+        <ul class="sidebar-menu">
+            <li class="menu-item active">General</li>
+            <li class="menu-item">Appearance</li>
+            <li class="menu-item">Directories</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="content-header">General Settings</div>
+        <div class="content-body">
+            <label class="setting-item">
+                <span class="setting-label">Auto-Identify Common File Types</span>
+                <input type="checkbox">
+            </label>
+            <label class="setting-item">
+                <span class="setting-label">Confirm Space Deletion</span>
+                <input type="checkbox">
+            </label>
+            <label class="setting-item">
+                <span class="setting-label">Theme</span>
+                <select>
+                    <option>Dark</option>
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
+</body>
+</html>

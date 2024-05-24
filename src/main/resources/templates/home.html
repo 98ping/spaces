@@ -34,10 +34,39 @@
         <p>Select a project from the list to get started.</p>
         <div class="settings-buttons">
             <button class="settings-button">Settings</button>
-            <button class="settings-button">Help</button>
+            <button class="settings-button" onclick="showPopup()">Create</button>
             <button class="settings-button">Socials</button>
         </div>
     </div>
 </div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="hidePopup()">&times;</span>
+        <h2>Enter Project Name</h2>
+        <input type="text" id="projectName" placeholder="Enter environment name...">
+        <button onclick="saveProject()">Save</button>
+        <button onclick="hidePopup()">Cancel</button>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    function showPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function hidePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+
+    function saveProject() {
+        var projectName = document.getElementById("projectName").value;
+        alert("Environment Created: " + projectName);
+        hidePopup();
+
+        [[${T(ltd.matrixstudios.spaces.environments.EnvironmentManager).create(projectName)}]];
+    }
+</script>
 </body>
 </html>

@@ -20,4 +20,9 @@ public class HomeRouteController {
     public ModelAndView onHomeRequest() {
         return new ModelAndView("home");
     }
+
+    @RequestMapping(value = { "/settings", "/options" }, method = { RequestMethod.GET })
+    public ModelAndView onSettingsRequest() {
+        return new ModelAndView("settings");
+    }
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Selection Screen</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/homepage.css" th:href="@{/css/homepage.css}"/>
+</head>
+
+
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h2>Projects</h2>
+        <div class="project-list-container">
+            <ul class="project-list">
+                <li class="project-item">
+                    <img src="project1-logo.png" alt="Project 1 Logo" class="project-logo">
+                    <span class="project-description">Project 1</span>
+                </li>
+                <li class="project-item">
+                    <img src="project2-logo.png" alt="Project 2 Logo" class="project-logo">
+                    <span class="project-description">Project 2</span>
+                </li>
+                <li class="project-item">
+                    <img src="project3-logo.png" alt="Project 3 Logo" class="project-logo">
+                    <span class="project-description">Project 3</span>
+                </li>
+                <li class="project-item">
+                    <img src="project4-logo.png" alt="Project 4 Logo" class="project-logo">
+                    <span class="project-description">Project 4</span>
+                </li>
+                <li class="project-item">
+                    <img src="project5-logo.png" alt="Project 5 Logo" class="project-logo">
+                    <span class="project-description">Project 5</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+        <h1>Welcome to Spaces</h1>
+        <p>Select a project from the list to get started.</p>
+        <div class="settings-buttons">
+            <button class="settings-button">Settings</button>
+            <button class="settings-button">Help</button>
+            <button class="settings-button">Socials</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

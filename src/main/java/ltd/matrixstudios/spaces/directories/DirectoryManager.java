@@ -13,8 +13,8 @@ import java.io.File;
  */
 @Getter
 public class DirectoryManager {
-    public File dataPath;
-    public File environmentPath;
+    private File dataPath;
+    private File environmentPath;
 
     public DirectoryManager() {
         setupAllDirectories();
@@ -27,10 +27,13 @@ public class DirectoryManager {
             dataPath.mkdirs();
         }
 
+        this.dataPath = dataPath;
+
         File environmentsSection = new File(dataPath.getPath() + "\\environments");
 
         if (!environmentsSection.exists()) {
             environmentsSection.mkdirs();
         }
+        this.environmentPath = environmentsSection;
     }
 }

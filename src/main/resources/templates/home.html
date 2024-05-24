@@ -14,16 +14,11 @@
     <div class="sidebar">
         <h2>Projects</h2>
         <div class="project-list-container">
-            <ul class="project-list">
+            <ul class="project-list" th:each="environment : ${environments}">
                 <li class="project-item">
-                    <img src="project1-logo.png" alt="Project 1 Logo" class="project-logo">
-                    <span class="project-name">Project 1</span>
-                    <span class="project-description">Brief description of Project 1.</span>
-                </li>
-                <li class="project-item">
-                    <img src="project2-logo.png" alt="Project 2 Logo" class="project-logo">
-                    <span class="project-name">Project 2</span>
-                    <span class="project-description">Brief description of Project 2.</span>
+                    <img src="project2-logo.png" alt="Fallback" class="project-logo">
+                    <span class="project-name" th:text="${environment.getName()}"></span>
+                    <span class="project-description" th:text="${environment.getDescription()}"></span>
                 </li>
             </ul>
         </div>
@@ -43,14 +38,15 @@
 <!-- Popup -->
 <div id="popup" class="popup">
     <div class="popup-content">
-        <span class="close" onclick="hidePopup()">&times;</span>
+
         <h2>Enter Project Name</h2>
-        <input type="text" id="projectName" placeholder="Enter environment name...">
-        <button onclick="saveProject()">Save</button>
-        <button onclick="hidePopup()">Cancel</button>
+        <form action="/create" method="post" th:action="@{/create}">
+            <input type="text" id="environmentName" name="environmentName" placeholder="Enter Environment name..." th:value="${environmentName}">
+            <button type="submit">Save</button>
+            <button type="button" onclick="hidePopup()">Cancel</button>
+        </form>
     </div>
 </div>
-
 <script th:inline="javascript">
     function showPopup() {
         document.getElementById("popup").style.display = "block";
@@ -61,11 +57,7 @@
     }
 
     function saveProject() {
-        var projectName = document.getElementById("projectName").value;
-        alert("Environment Created: " + projectName);
         hidePopup();
-
-        [[${T(ltd.matrixstudios.spaces.environments.EnvironmentManager).create(projectName)}]];
     }
 </script>
 </body>

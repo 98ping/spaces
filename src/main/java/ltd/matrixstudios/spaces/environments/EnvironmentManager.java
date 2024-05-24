@@ -1,15 +1,11 @@
 package ltd.matrixstudios.spaces.environments;
 
 import ltd.matrixstudios.spaces.SpacesApplication;
-import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FilenameFilter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Class created on 5/24/2024
@@ -78,8 +74,15 @@ public class EnvironmentManager {
 
     // Static to ensure thymeleaf can see this
     public static void create(String name) {
-        Environment toInsert = new Environment(name);
+        if (name == null) return;
 
+        Environment toInsert = new Environment(name);
         SpacesApplication.instance.getEnvironmentManager().environmentMap.put(toInsert.getRandomId(), toInsert);
+
+        System.out.println("Received and dispatched a creation call for the environment " + name);
+    }
+
+    public Collection<Environment> getAllEnvironments() {
+        return environmentMap.values();
     }
 }

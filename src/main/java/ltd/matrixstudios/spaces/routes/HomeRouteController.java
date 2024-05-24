@@ -1,5 +1,7 @@
 package ltd.matrixstudios.spaces.routes;
 
+import ltd.matrixstudios.spaces.SpacesApplication;
+import ltd.matrixstudios.spaces.environments.EnvironmentManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,16 @@ public class HomeRouteController {
 
     @RequestMapping(value = { "/home", "/" }, method = { RequestMethod.GET })
     public ModelAndView onHomeRequest() {
-        return new ModelAndView("home");
+        ModelAndView view = new ModelAndView("home");
+        view.addObject("environments", SpacesApplication.instance.getEnvironmentManager().getAllEnvironments());
+
+        return view;
+    }
+    @RequestMapping(value = { "/create" }, method = { RequestMethod.POST })
+    public String onCreate(String environmentName) {
+        EnvironmentManager.create(environmentName);
+
+        return "redirect:/home"; 
     }
 
     @RequestMapping(value = { "/settings", "/options" }, method = { RequestMethod.GET })

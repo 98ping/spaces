@@ -46,17 +46,6 @@ body {
     list-style: none;
 }
 
-.project-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #3c3f41;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
 .project-item:hover {
     background-color: #4b4b4b;
 }
@@ -67,8 +56,24 @@ body {
     margin-right: 10px;
 }
 
+.project-item {
+    display: flex;
+    flex-direction: column; /* Added to make project name and description display on different lines */
+    align-items: flex-start; /* Added for better alignment */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3c3f41;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.project-name {
+    margin-bottom: 5px; /* Added to create space between project name and description */
+}
+
 .project-description {
-    flex: 1;
+    color: #bbbbbb;
 }
 
 .main-content {

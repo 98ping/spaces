@@ -1,0 +1,209 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #222;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    color: #aaa;
+    cursor: pointer;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+}
+
+.sidebar ul li:hover {
+    color: #fff;
+    background-color: #444; /* Change background on hover */
+    border-radius: 3px; /* Add some rounding for better appearance */
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.file-explorer-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.file-explorer {
+    padding: 20px;
+    background-color: #222;
+    border-radius: 5px;
+}
+
+.current-path {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-table th, .file-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.file-table th {
+    background-color: #333;
+}
+
+.folder-logo, .file-logo {
+    margin-right: 10px; /* Add some space between the logo and the name */
+}
+
+.folder a, .file a {
+    display: inline-flex; /* Use inline-flex for the link contents */
+    align-items: center; /* Center items vertically */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.folder-name, .file-name {
+    font-weight: bold;
+}
+
+.folder:hover, .file:hover {
+    background-color: #444; /* Change background on hover */
+}
+
+.project-description {
+    margin-top: 30px;
+}
+
+.project-description h2 {
+    color: #fff;
+}
+
+.project-description p {
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* Setting item styles */
+.setting-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.setting-label {
+    flex-grow: 1;
+}
+
+/* Additional style for setting description */
+.setting-description {
+    color: #999; /* Slightly darker color */
+    margin-top: 5px; /* Add some space between label and description */
+}
+
+/* Checkbox and select styles */
+input[type="checkbox"], select {
+    margin-left: 10px;
+    background-color: #555; /* Darker background for inputs */
+    color: #ffffff; /* White text color for inputs */
+    border: none; /* Remove border */
+    padding: 5px; /* Add some padding */
+}
+
+/* Custom checkbox styling */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #555;
+    border: 2px solid #555;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Styling for checked state of checkbox */
+input[type="checkbox"]:checked {
+    background-color: #4CAF50; /* Green background when checked */
+    border: 2px solid #4CAF50;
+}
+
+/* Apply button styles */
+.apply-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Custom textbox styling */
+input[type="text"].font-textbox {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #555; /* Darker background for inputs */
+    color: #ffffff; /* White text color for inputs */
+    border: none; /* Remove border */
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono font */
+    width: 300px; /* Adjust the width */
+}
+
+input[type="text"].font-textbox::placeholder {
+    color: #ccc; /* Placeholder color */
+}
+
+/* Increase specificity to target only the textbox setting */
+.setting-item > input[type="text"].font-textbox {
+    margin-left: 10px;
+}
+

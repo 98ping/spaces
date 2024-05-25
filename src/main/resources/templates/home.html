@@ -16,9 +16,11 @@
         <div class="project-list-container">
             <ul class="project-list" th:each="environment : ${environments}">
                 <li class="project-item">
-                    <img src="project2-logo.png" alt="Fallback" class="project-logo">
-                    <span class="project-name" th:text="${environment.getName()}"></span>
-                    <span class="project-description" th:text="${environment.getDescription()}"></span>
+                    <a th:href="@{'/environment/view/' + ${environment.getRandomId().toString()}}" class="project-link">
+                        <img src="project2-logo.png" alt="Fallback" class="project-logo">
+                        <span class="project-name" th:text="${environment.getName()}"></span>
+                        <span class="project-description" th:text="${environment.getDescription()}"></span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -41,7 +43,8 @@
 
         <h2>Enter Project Name</h2>
         <form action="/create" method="post" th:action="@{/create}">
-            <input type="text" id="environmentName" name="environmentName" placeholder="Enter Environment name..." th:value="${environmentName}">
+            <input type="text" id="environmentName" name="environmentName" placeholder="Enter Environment name..."
+                   th:value="${environmentName}">
             <button type="submit">Save</button>
             <button type="button" onclick="hidePopup()">Cancel</button>
         </form>

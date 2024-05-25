@@ -66,6 +66,64 @@ body {
     flex-grow: 1;
 }
 
+/* Apply button styles */
+.apply-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Custom textbox styling */
+input[type="text"] {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #555; /* Darker background for inputs */
+    color: #ffffff; /* White text color for inputs */
+    border: none; /* Remove border */
+    border-radius: 4px;
+}
+
+/* Custom textbox styling */
+input[type="text"].font-textbox {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #555; /* Darker background for inputs */
+    color: #ffffff; /* White text color for inputs */
+    border: none; /* Remove border */
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono font */
+    width: 200px; /* Adjust the width */
+}
+
+input[type="text"].font-textbox::placeholder {
+    color: #ccc; /* Placeholder color */
+}
+
+/* Increase specificity to target only the textbox setting */
+.setting-item > input[type="text"].font-textbox {
+    margin-left: 10px;
+}
+
+input[type="text"]::placeholder {
+    color: #ccc; /* Placeholder color */
+}
+
+/* Increase specificity to target only the textbox setting */
+.setting-item > input[type="text"] {
+    flex-grow: 2; /* Take up remaining space */
+    margin-left: 10px;
+}
+
 /* Setting item styles */
 .setting-item {
     display: flex;

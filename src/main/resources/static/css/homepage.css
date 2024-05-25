@@ -55,6 +55,7 @@ body {
     display: flex;
     flex-direction: column; /* Stack project name and description vertically */
     align-items: flex-start; /* Align items to the start of the flex container */
+    text-decoration: none; /* Remove underline */
     padding: 10px;
     margin-bottom: 10px;
     background-color: #3c3f41;
@@ -80,6 +81,37 @@ body {
 
 .project-description {
     color: #bbbbbb; /* Lighter color for description */
+}
+
+.project-link {
+    display: flex;
+    flex-direction: column; /* Stack project name and description vertically */
+    align-items: flex-start; /* Align items to the start of the flex container */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3c3f41;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.project-link:hover {
+    background-color: #4b4b4b;
+}
+
+.project-link img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 10px; /* Separate logo from the project name */
+}
+
+.project-link .project-name {
+    font-weight: bold; /* Highlight project name */
+    margin-bottom: 5px; /* Space between name and description */
+}
+
+.project-link .project-description {
+     color: #bbbbbb; /* Lighter color for description */
 }
 
 /* Main content styles */

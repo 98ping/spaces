@@ -1,7 +1,6 @@
 package ltd.matrixstudios.spaces.environments;
 
 import com.google.gson.JsonObject;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import ltd.matrixstudios.spaces.SpacesApplication;
@@ -55,9 +54,11 @@ public class Environment {
         return res;
     }
 
-    public void adaptJsonObject(JsonObject object) {
+    public void updateUsingJsonObject(JsonObject object) {
         this.pathToEnvironment = object.get("environment").getAsString();
         this.description = object.get("description").getAsString();
+
+        save();
     }
 
     public void save() {
@@ -92,6 +93,9 @@ public class Environment {
                 }
             }
         }
+
+        // Cache the stuff AFTER we ensure the disk write was successful
+        SpacesApplication.instance.getEnvironmentManager().environmentMap.put(randomId, this);
     }
 
     public String getStringedIdentifier() {

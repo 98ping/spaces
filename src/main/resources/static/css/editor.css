@@ -194,7 +194,7 @@ input[type="checkbox"]:checked {
 }
 
 /* Custom textbox styling */
-input[type="text"].font-textbox, input[type="text"].environment-textbox, input[type="text"].description-textbox{
+input[type="text"].setting-textbox {
     margin-left: 10px;
     padding: 5px;
     background-color: #555; /* Darker background for inputs */

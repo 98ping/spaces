@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -40,6 +39,10 @@ public class EnvironmentController {
         ModelAndView modelAndView = new ModelAndView("editor");
         UUID formattedId = UUID.fromString(id);
         Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);
+
+        System.out.println("Received an update request with the json object body " + jsonObject.toString());
+
+        environment.updateUsingJsonObject(jsonObject);
 
         modelAndView.addObject("environment", environment);
 

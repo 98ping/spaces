@@ -175,19 +175,19 @@
             <label class="setting-item">
                 <div class="setting-label">Environment Destination</div>
                 <div class="setting-description">Set where you want this environment to be at.</div>
-                <input type="text" placeholder="Enter your destination..." class="environment-textbox">
+                <input type="text" placeholder="Enter your destination..." class="setting-textbox", id="environment-textbox">
             </label>
             <label class="setting-item">
                 <div class="setting-label">Environment Description</div>
                 <div class="setting-description">Set what you want the description of this environment to be.</div>
-                <input type="text" placeholder="Enter your description..." class="description-textbox">
+                <input type="text" placeholder="Enter your description..." class="setting-textbox", id="description-textbox">
             </label>
             <label class="setting-item">
                 <div class="setting-label">Auto-Clean Environment</div>
                 <div class="setting-description">Automaticially attempt to clean the environment whenever it is loaded
                     into memory.
                 </div>
-                <input type="checkbox" class="auto-clean-textbox">
+                <input type="checkbox" class="auto-clean-checkbox", id="auto-clean">
             </label>
             <button class="apply-button">Apply</button>
         </div>
@@ -200,9 +200,9 @@
         document.querySelector('.apply-button').addEventListener('click', function() {
             // Gather the updated settings data
             const updatedSettings = {
-                autoClean: document.querySelector('#auto-clean-textbox').checked,
-                environment: document.querySelector('#environment-textbox').value,
-                description: document.querySelection('#description-textbox').value
+                autoClean: document.getElementById('auto-clean').checked,
+                environment: document.getElementById('environment-textbox').value,
+                description: document.getElementById('description-textbox').value
             };
 
             // Send the updated settings data to your endpoint
@@ -211,7 +211,6 @@
 
         // Function to send data to the endpoint
         function sendDataToEndpoint(data) {
-            console.log([[${environment.getRandomId()}]]);
             const endpointUrl = 'http://localhost:8080/environment/update/' + [[${environment.getStringedIdentifier()}]];
 
             // Send a POST request with the settings data as JSON

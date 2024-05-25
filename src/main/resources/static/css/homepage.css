@@ -53,9 +53,9 @@ body {
 /* Project item styles */
 .project-item {
     display: flex;
+    text-decoration: none; /* Remove underline from anchor elements */
     flex-direction: column; /* Stack project name and description vertically */
     align-items: flex-start; /* Align items to the start of the flex container */
-    text-decoration: none; /* Remove underline */
     padding: 10px;
     margin-bottom: 10px;
     background-color: #3c3f41;
@@ -85,12 +85,14 @@ body {
 
 .project-link {
     display: flex;
+    text-decoration: none; /* Remove underline from anchor elements */
     flex-direction: column; /* Stack project name and description vertically */
     align-items: flex-start; /* Align items to the start of the flex container */
     padding: 10px;
     margin-bottom: 10px;
     background-color: #3c3f41;
     border-radius: 4px;
+    color: inherit; /* Inherit color */
     cursor: pointer;
     transition: background-color 0.2s;
 }

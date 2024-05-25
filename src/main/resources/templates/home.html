@@ -15,13 +15,13 @@
         <h2>Projects</h2>
         <div class="project-list-container">
             <ul class="project-list" th:each="environment : ${environments}">
-                <li class="project-item">
-                    <a th:href="@{'/environment/view/' + ${environment.getRandomId().toString()}}" class="project-link">
-                        <img src="project2-logo.png" alt="Fallback" class="project-logo">
+                <a th:href="@{'/environment/view/' + ${environment.getRandomId().toString()}}" class="project-link">
+                    <li class="project-item">
+                        <!-- <img src="project2-logo.png" alt="Fallback" class="project-logo"> -->
                         <span class="project-name" th:text="${environment.getName()}"></span>
                         <span class="project-description" th:text="${environment.getDescription()}"></span>
-                    </a>
-                </li>
+                    </li>
+                </a>
             </ul>
         </div>
     </div>

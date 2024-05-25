@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * Class created on 5/24/2024
  *
- * @author 98ping
+ * @author Max C.
  * @project spaces
  * @website https://solo.to/redis
  */

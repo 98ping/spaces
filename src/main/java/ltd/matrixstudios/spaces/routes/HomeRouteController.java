@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Class created on 5/23/2024
  *
- * @author 98ping
+ * @author Max C.
  * @project spaces
  * @website https://solo.to/redis
  */

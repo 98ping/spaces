@@ -66,6 +66,13 @@ body {
     margin: 0 auto;
 }
 
+.table-container {
+    max-height: calc(10 * 40px + 40px); /* 10 rows * row height + header height */
+    overflow-y: auto;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
 .file-explorer {
     padding: 20px;
     background-color: #222;
@@ -187,7 +194,7 @@ input[type="checkbox"]:checked {
 }
 
 /* Custom textbox styling */
-input[type="text"].font-textbox {
+input[type="text"].font-textbox, input[type="text"].environment-textbox, input[type="text"].description-textbox{
     margin-left: 10px;
     padding: 5px;
     background-color: #555; /* Darker background for inputs */

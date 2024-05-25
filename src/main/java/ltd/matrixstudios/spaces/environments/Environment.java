@@ -1,11 +1,15 @@
 package ltd.matrixstudios.spaces.environments;
 
+import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import ltd.matrixstudios.spaces.SpacesApplication;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -30,6 +34,30 @@ public class Environment {
         this.pathToEnvironment = null;
 
         save();
+    }
+
+    public List<File> listAllFiles() {
+        List<File> res = new ArrayList<>();
+
+        if (pathToEnvironment == null) {
+            return res;
+        }
+
+        File environmentPath = new File(pathToEnvironment);
+        File[] files = environmentPath.listFiles();
+
+        if (files == null) {
+            return res;
+        }
+
+        Arrays.stream(files).sorted(((o1, o2) -> Math.toIntExact(o2.lastModified() - o1.lastModified()))).forEach(res::add);
+
+        return res;
+    }
+
+    public void adaptJsonObject(JsonObject object) {
+        this.pathToEnvironment = object.get("environment").getAsString();
+        this.description = object.get("description").getAsString();
     }
 
     public void save() {
@@ -64,5 +92,9 @@ public class Environment {
                 }
             }
         }
+    }
+
+    public String getStringedIdentifier() {
+        return randomId.toString();
     }
 }

@@ -6,7 +6,8 @@
     <title>IntelliJ-like File Explorer</title>
     <link rel="stylesheet" type="text/css" media="all"
           href="../static/css/editor.css" th:href="@{/css/editor.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-mQA6Pj4R2FpQ5axlRUOfshBxMFWzJo3FdXpm2z8v8hbqOeHzGsVz8aqw/6Tw3OgZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha384-mQA6Pj4R2FpQ5axlRUOfshBxMFWzJo3FdXpm2z8v8hbqOeHzGsVz8aqw/6Tw3OgZ" crossorigin="anonymous">
 </head>
 <body class="dark-mode">
 <div class="container">
@@ -26,79 +27,150 @@
                 <div class="current-path">
                     Current Path: <span>/</span>
                 </div>
-                <table class="file-table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Size</th>
-                        <th>Created</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="folder">
-                        <td>
-                            <a href="#">
-                                <span class="folder-logo">📁</span>
-                                <span class="folder-name">Folder 1</span>
-                            </a>
-                        </td>
-                        <td>Folder</td>
-                        <td>100 KB</td>
-                        <td>Jan 1, 2024</td>
-                    </tr>
-                    <tr class="folder">
-                        <td>
-                            <a href="#">
-                                <span class="folder-logo">📁</span>
-                                <span class="folder-name">Folder 2</span>
-                            </a>
-                        </td>
-                        <td>Folder</td>
-                        <td>50 KB</td>
-                        <td>Feb 15, 2024</td>
-                    </tr>
-                    <tr class="file">
-                        <td>
-                            <a href="#">
-                                <span class="file-logo">📄</span>
-                                <span class="file-name">File 1.txt</span>
-                            </a>
-                        </td>
-                        <td>File</td>
-                        <td>10 KB</td>
-                        <td>Jan 5, 2024</td>
-                    </tr>
-                    <tr class="file">
-                        <td>
-                            <a href="#">
-                                <span class="file-logo">📄</span>
-                                <span class="file-name">File 2.txt</span>
-                            </a>
-                        </td>
-                        <td>File</td>
-                        <td>20 KB</td>
-                        <td>Feb 20, 2024</td>
-                    </tr>
-                    <tr class="file">
-                        <td>
-                            <a href="#">
-                                <span class="file-logo">🖼️</span>
-                                <span class="file-name">File 3.jpg</span>
-                            </a>
-                        </td>
-                        <td>Image</td>
-                        <td>2 MB</td>
-                        <td>Mar 1, 2024</td>
-                    </tr>
-                    <!-- Add more files and folders as needed -->
-                    </tbody>
-                </table>
+                <div class="table-container">
+                    <table class="file-table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Size</th>
+                            <th>Created</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="folder">
+                            <td>
+                                <a href="#">
+                                    <span class="folder-logo">📁</span>
+                                    <span class="folder-name">Folder 1</span>
+                                </a>
+                            </td>
+                            <td>Folder</td>
+                            <td>100 KB</td>
+                            <td>Jan 1, 2024</td>
+                        </tr>
+                        <tr class="folder">
+                            <td>
+                                <a href="#">
+                                    <span class="folder-logo">📁</span>
+                                    <span class="folder-name">Folder 2</span>
+                                </a>
+                            </td>
+                            <td>Folder</td>
+                            <td>50 KB</td>
+                            <td>Feb 15, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">📄</span>
+                                    <span class="file-name">File 1.txt</span>
+                                </a>
+                            </td>
+                            <td>File</td>
+                            <td>10 KB</td>
+                            <td>Jan 5, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">📄</span>
+                                    <span class="file-name">File 2.txt</span>
+                                </a>
+                            </td>
+                            <td>File</td>
+                            <td>20 KB</td>
+                            <td>Feb 20, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <tr class="file">
+                            <td>
+                                <a href="#">
+                                    <span class="file-logo">🖼️</span>
+                                    <span class="file-name">File 3.jpg</span>
+                                </a>
+                            </td>
+                            <td>Image</td>
+                            <td>2 MB</td>
+                            <td>Mar 1, 2024</td>
+                        </tr>
+                        <!-- Add more files and folders as needed -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="project-description">
             <h2>Environment Details</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit, libero ut convallis vestibulum, turpis nisi accumsan nunc, vel tristique quam justo id ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras in semper orci. Morbi nec nunc et urna fermentum finibus.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit, libero ut convallis vestibulum,
+                turpis nisi accumsan nunc, vel tristique quam justo id ipsum. Vestibulum ante ipsum primis in faucibus
+                orci luctus et ultrices posuere cubilia curae; Cras in semper orci. Morbi nec nunc et urna fermentum
+                finibus.</p>
             <h2>Environment Settings</h2>
             <label class="setting-item">
                 <div class="setting-label">Environment Destination</div>
@@ -106,8 +178,15 @@
                 <input type="text" placeholder="Enter your destination..." class="environment-textbox">
             </label>
             <label class="setting-item">
+                <div class="setting-label">Environment Description</div>
+                <div class="setting-description">Set what you want the description of this environment to be.</div>
+                <input type="text" placeholder="Enter your description..." class="description-textbox">
+            </label>
+            <label class="setting-item">
                 <div class="setting-label">Auto-Clean Environment</div>
-                <div class="setting-description">Automaticially attempt to clean the environment whenever it is loaded into memory.</div>
+                <div class="setting-description">Automaticially attempt to clean the environment whenever it is loaded
+                    into memory.
+                </div>
                 <input type="checkbox" class="auto-clean-textbox">
             </label>
             <button class="apply-button">Apply</button>
@@ -122,7 +201,8 @@
             // Gather the updated settings data
             const updatedSettings = {
                 autoClean: document.querySelector('#auto-clean-textbox').checked,
-                environment: document.querySelector('#environment-textbox').value
+                environment: document.querySelector('#environment-textbox').value,
+                description: document.querySelection('#description-textbox').value
             };
 
             // Send the updated settings data to your endpoint
@@ -131,7 +211,8 @@
 
         // Function to send data to the endpoint
         function sendDataToEndpoint(data) {
-            const endpointUrl = 'YOUR_ENDPOINT_URL';
+            console.log([[${environment.getRandomId()}]]);
+            const endpointUrl = 'http://localhost:8080/environment/update/' + [[${environment.getStringedIdentifier()}]];
 
             // Send a POST request with the settings data as JSON
             fetch(endpointUrl, {

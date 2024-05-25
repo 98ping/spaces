@@ -82,6 +82,10 @@ public class EnvironmentManager {
         System.out.println("Received and dispatched a creation call for the environment " + name);
     }
 
+    public Environment getEnvironmentById(UUID id) {
+        return environmentMap.getOrDefault(id, null);
+    }
+
     public Collection<Environment> getAllEnvironments() {
         return environmentMap.values();
     }

@@ -3,6 +3,7 @@ package ltd.matrixstudios.spaces.environments.routes;
 import com.google.gson.JsonObject;
 import ltd.matrixstudios.spaces.SpacesApplication;
 import ltd.matrixstudios.spaces.environments.Environment;
+import ltd.matrixstudios.spaces.environments.files.WrappedFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Class created on 5/24/2024
@@ -22,18 +24,19 @@ import java.util.UUID;
 @Controller
 public class EnvironmentController {
 
-    @RequestMapping(value = { "/environment/view/{id}" }, method = { RequestMethod.GET })
+    @RequestMapping(value = {"/environment/view/{id}"}, method = {RequestMethod.GET})
     public ModelAndView openEnvironmentEditor(@PathVariable String id) {
         UUID formattedId = UUID.fromString(id);
         Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);
         ModelAndView modelAndView = new ModelAndView("editor");
 
         modelAndView.addObject("environment", environment);
+        modelAndView.addObject("files", environment.listAllFiles().stream().map(WrappedFile::new).collect(Collectors.toList()));
 
         return modelAndView;
     }
 
-    @RequestMapping(value = { "/environment/update/{id}" }, method = { RequestMethod.POST })
+    @RequestMapping(value = {"/environment/update/{id}"}, method = {RequestMethod.POST})
     public ModelAndView updateEnvironment(@PathVariable String id, @RequestBody String payload) {
         JsonObject jsonObject = SpacesApplication.GSON.fromJson(payload, JsonObject.class);
         ModelAndView modelAndView = new ModelAndView("editor");

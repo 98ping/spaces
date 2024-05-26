@@ -38,126 +38,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="folder">
+                        <tr class="folder" th:each="file : ${files}">
                             <td>
                                 <a href="#">
                                     <span class="folder-logo">📁</span>
-                                    <span class="folder-name">Folder 1</span>
+                                    <span class="folder-name" th:text="${file.getName()}"></span>
                                 </a>
                             </td>
-                            <td>Folder</td>
-                            <td>100 KB</td>
+                            <td th:text="${file.isDirectory() ? 'Folder' : 'File'}"></td>
+                            <td th:text="${file.readableFileSize()}"></td>
                             <td>Jan 1, 2024</td>
-                        </tr>
-                        <tr class="folder">
-                            <td>
-                                <a href="#">
-                                    <span class="folder-logo">📁</span>
-                                    <span class="folder-name">Folder 2</span>
-                                </a>
-                            </td>
-                            <td>Folder</td>
-                            <td>50 KB</td>
-                            <td>Feb 15, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">📄</span>
-                                    <span class="file-name">File 1.txt</span>
-                                </a>
-                            </td>
-                            <td>File</td>
-                            <td>10 KB</td>
-                            <td>Jan 5, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">📄</span>
-                                    <span class="file-name">File 2.txt</span>
-                                </a>
-                            </td>
-                            <td>File</td>
-                            <td>20 KB</td>
-                            <td>Feb 20, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
-                        </tr>
-                        <tr class="file">
-                            <td>
-                                <a href="#">
-                                    <span class="file-logo">🖼️</span>
-                                    <span class="file-name">File 3.jpg</span>
-                                </a>
-                            </td>
-                            <td>Image</td>
-                            <td>2 MB</td>
-                            <td>Mar 1, 2024</td>
                         </tr>
                         <!-- Add more files and folders as needed -->
                         </tbody>

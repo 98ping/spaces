@@ -6,10 +6,8 @@ import lombok.Setter;
 import ltd.matrixstudios.spaces.SpacesApplication;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.nio.file.Files;
+import java.util.*;
 
 /**
  * Class created on 5/24/2024
@@ -60,6 +58,57 @@ public class Environment {
 
         save();
     }
+
+    /**
+     * Simple search system that uses different layers of depth
+     * in order to search into folders and stuff and not just scrape
+     * at the surface level.
+     * </p>
+     * Time complexity of this algorithm scales
+     * horrifically so just be noted.
+     *
+     * @param term - Term that needs to be tested against
+     * @param depth - How deep into folders should we search?
+     */
+    public List<File> search(String term, int depth) {
+        List<File> currentFiles = listAllFiles();
+        List<File> result = new ArrayList<>();
+
+        if (term == null) return result;
+
+        for (File file : currentFiles) {
+            if (!file.isDirectory()) {
+                if (file.getName().contains(term)) {
+                    result.add(file);
+                }
+            } else if (file.isDirectory()) {
+                if (depth != 0) {
+                    int traversed = 0;
+                    List<File> toIterate = new ArrayList<>(Arrays.stream(Objects.requireNonNull(file.listFiles())).toList());
+
+                    while (traversed < depth) {
+                        List<File> copy = toIterate;
+                        toIterate = new ArrayList<>();
+
+                        for (File subFile : copy) {
+                            if (!subFile.isDirectory()) {
+                                if (subFile.getName().contains(term)) {
+                                    result.add(subFile);
+                                }
+                            } else {
+                                toIterate.addAll(Arrays.stream(Objects.requireNonNull(subFile.listFiles())).toList());
+                            }
+                        }
+
+                        traversed++;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
 
     public void save() {
         File path = new File(SpacesApplication.instance.getDirectoryManager().getEnvironmentPath().getPath() + "\\" + randomId.toString());

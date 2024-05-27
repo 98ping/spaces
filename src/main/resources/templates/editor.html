@@ -65,6 +65,13 @@
                 <h3>File Path</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit, libero ut convallis vestibulum, turpis nisi accumsan nunc, vel tristique quam justo id ipsum.</p>
             </div>
+            <h2>Environment Search</h2>
+            <label class="setting-item">
+                <div class="setting-label">Environment Search</div>
+                <input type="text" placeholder="Search For Somrthing..." class="setting-textbox", id="search-query">
+                <input type="text" placeholder="Specify Search Depth..." class="setting-textbox", id="search-depth">
+                <button class="setting-button", id="search-button">Search</button>
+            </label>
             <h2>Environment Settings</h2>
             <label class="setting-item">
                 <div class="setting-label">Environment Destination</div>
@@ -158,6 +165,22 @@
             })
             .catch(() => alert('Unable to handle this action! Please try again later.'));
         } )
+
+        //
+        // Function to handle the search logic
+        //
+        document.getElementById("search-button").addEventListener('click', function() {
+            // Gather the updated settings data
+            const depth = document.getElementById('search-depth').value != undefined ? document.getElementById('search-depth').value : '0';
+            let term = document.getElementById('search-query').value;
+    
+
+            // Send the updated settings data to your endpoint
+            const endpointUrl = 'http://localhost:8080/environment/search/' 
+            + [[${environment.getStringedIdentifier()}]] + '?depth=' + depth + '&keyword="' + term + '"';
+
+            window.location.href = endpointUrl;
+        });
     });
 </script>
 </html>

@@ -41,7 +41,7 @@
                         <tr class="folder" th:each="file : ${files}">
                             <td>
                                 <a href="#">
-                                    <span class="folder-logo">📁</span>
+                                    <span class="folder-logo" th:text="${file.isDirectory() ? '📁' : '📄'}"></span>
                                     <span class="folder-name" th:text="${file.getName()}"></span>
                                 </a>
                             </td>
@@ -83,6 +83,12 @@
                 </div>
                 <input type="checkbox" class="auto-clean-checkbox", id="auto-clean">
             </label>
+            <label class="setting-item">
+                <div class="setting-label">Zip File Contents</div>
+                <div class="setting-description">Zip up the entire environment and allow it to be downloaded.
+                </div>
+                <button class="setting-button", id="zip-button">Zip Files</button>
+            </label>
             <button class="apply-button">Apply</button>
         </div>
     </div>
@@ -90,7 +96,9 @@
 </body>
 <script th:inline="javascript">
     document.addEventListener("DOMContentLoaded", function() {
+        //
         // Function to handle the click event of the "Apply" button
+        //
         document.querySelector('.apply-button').addEventListener('click', function() {
             // Gather the updated settings data
             const updatedSettings = {
@@ -130,6 +138,26 @@
                 // Handle errors here
             });
         }
+
+        //
+        // Function to handle the zip action
+        //
+        document.getElementById('zip-button').addEventListener('click', function () {
+            fetch('http://localhost:8080/environment/zip/' + [[${environment.getStringedIdentifier()}]])
+            // check to make sure you didn't have an unexpected failure (may need to check other things here depending on use case / backend)
+            .then(resp => resp.status === 200 ? resp.blob() : Promise.reject('something went wrong'))
+            .then(blob => {
+                const endpointUrl = 'http://localhost:8080/environment/zip/' + [[${environment.getStringedIdentifier()}]];
+                var link = document.createElement("a");
+
+                link.setAttribute('download', [[${environment.getStringedIdentifier()}]] + '.zip');
+                link.href = endpointUrl;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            })
+            .catch(() => alert('Unable to handle this action! Please try again later.'));
+        } )
     });
 </script>
 </html>

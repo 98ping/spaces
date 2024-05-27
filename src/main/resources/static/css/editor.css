@@ -214,3 +214,20 @@ input[type="text"].font-textbox::placeholder {
     margin-left: 10px;
 }
 
+/* Button Styles */
+.setting-button {
+    margin-top: 10px; /* Add some space above the reset button */
+    margin-left: 10px;
+    padding: 10px 30px; /* Increase padding for a longer button */
+    background-color: #4CAF50; /* Red background */
+    color: #ffffff; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 0; /* Make the button box-shaped */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.setting-button:hover {
+    background-color: #45a049; /* Darker red on hover */
+}

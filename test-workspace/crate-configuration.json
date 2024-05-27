@@ -1,0 +1,28 @@
+[
+  {
+    "id": "matrix",
+    "name": "Matrix",
+    "fancyName": "\u0026a\u0026lMatrix Crate",
+    "items": [],
+    "keyItem": "LEGACY_TRIPWIRE_HOOK",
+    "keyName": "\u0026fKey",
+    "size": 27,
+    "minItems": 1,
+    "maxItems": 1,
+    "world": "world",
+    "useHologram": true,
+    "hologramLines": [
+      "§fHello!",
+      "§fHello!",
+      "Helol!",
+      "asdas",
+      "asda"
+    ],
+    "x": -76.0,
+    "y": 74.0,
+    "z": 386.0,
+    "keyDescription": [],
+    "keyData": 0,
+    "effect": null
+  }
+]

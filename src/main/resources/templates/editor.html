@@ -40,7 +40,8 @@
                         <tbody>
                         <tr class="folder" th:each="file : ${files}">
                             <td>
-                                <a href="#">
+                                <a th:href=
+                                "@{${environment.createHref(file)}}">
                                     <span class="folder-logo" th:text="${file.isDirectory() ? '📁' : '📄'}"></span>
                                     <span class="folder-name" th:text="${file.getName()}"></span>
                                 </a>

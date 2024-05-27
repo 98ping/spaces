@@ -6,6 +6,7 @@ import com.google.gson.LongSerializationPolicy;
 import lombok.Getter;
 import ltd.matrixstudios.spaces.directories.DirectoryManager;
 import ltd.matrixstudios.spaces.environments.EnvironmentManager;
+import ltd.matrixstudios.spaces.util.EncryptionUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -21,6 +22,7 @@ public class SpacesApplication {
 
 	@Getter private DirectoryManager directoryManager;
 	@Getter private EnvironmentManager environmentManager;
+	@Getter private EncryptionUtil encryptionUtil;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpacesApplication.class, args);
@@ -32,5 +34,6 @@ public class SpacesApplication {
 	public void onEnable() {
 		directoryManager = new DirectoryManager();
 		environmentManager = new EnvironmentManager();
+		encryptionUtil = new EncryptionUtil();
 	}
 }

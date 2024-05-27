@@ -1,80 +1,25 @@
 package ltd.matrixstudios.spaces.environments.routes;
 
-import com.google.gson.JsonObject;
 import ltd.matrixstudios.spaces.SpacesApplication;
 import ltd.matrixstudios.spaces.environments.Environment;
-import ltd.matrixstudios.spaces.environments.files.WrappedFile;
 import ltd.matrixstudios.spaces.util.ZipUtility;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-/**
- * Class created on 5/24/2024
- *
- * @author Max C.
- * @project spaces
- * @website https://solo.to/redis
- */
 @Controller
-public class EnvironmentController {
-
-    @RequestMapping(value = {"/environment/view/{id}"}, method = {RequestMethod.GET})
-    public ModelAndView openEnvironmentEditor(@PathVariable String id) {
-        UUID formattedId = UUID.fromString(id);
-        Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);
-        ModelAndView modelAndView = new ModelAndView("editor");
-
-        modelAndView.addObject("environment", environment);
-        modelAndView.addObject("files", environment.listAllFiles().stream().map(WrappedFile::new).collect(Collectors.toList()));
-
-        return modelAndView;
-    }
-
-    @RequestMapping(value = {"/environment/update/{id}"}, method = {RequestMethod.POST})
-    public ModelAndView updateEnvironment(@PathVariable String id, @RequestBody String payload) {
-        JsonObject jsonObject = SpacesApplication.GSON.fromJson(payload, JsonObject.class);
-        ModelAndView modelAndView = new ModelAndView("editor");
-        UUID formattedId = UUID.fromString(id);
-        Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);
-
-        System.out.println("Received an update request with the json object body " + jsonObject.toString());
-
-        environment.updateUsingJsonObject(jsonObject);
-
-        modelAndView.addObject("environment", environment);
-        modelAndView.addObject("files", environment.listAllFiles().stream().map(WrappedFile::new).collect(Collectors.toList()));
-
-        return modelAndView;
-    }
-
-    @RequestMapping(value = {"/environment/search/{id}"}, method = {RequestMethod.GET})
-    public ModelAndView searchBasedOnId(@PathVariable String id, @RequestParam String keyword, @RequestParam(defaultValue = "0") int depth) {
-        ModelAndView modelAndView = new ModelAndView("editor");
-        UUID formattedId = UUID.fromString(id);
-        Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);
-        // Why in the world do we have to do this
-        List<File> searchResults = environment.search(keyword.replace("\"", ""), depth);
-
-        modelAndView.addObject("environment", environment);
-        modelAndView.addObject("files", searchResults.stream().map(WrappedFile::new).collect(Collectors.toList()));
-
-        return modelAndView;
-    }
+public class GETZipEnvironmentContents {
 
     /**
      * This function is a blatant attempt at covering my tracks when it comes to
@@ -148,5 +93,4 @@ public class EnvironmentController {
             return ResponseEntity.status(404).body(null);
         }
     }
-
 }

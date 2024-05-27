@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 import lombok.Setter;
 import ltd.matrixstudios.spaces.SpacesApplication;
+import ltd.matrixstudios.spaces.environments.files.WrappedFile;
+import ltd.matrixstudios.spaces.util.EncryptionUtil;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -47,7 +49,7 @@ public class Environment {
             return res;
         }
 
-        Arrays.stream(files).sorted(((o1, o2) -> Math.toIntExact(o2.lastModified() - o1.lastModified()))).forEach(res::add);
+        res.addAll(Arrays.asList(files));
 
         return res;
     }
@@ -149,5 +151,13 @@ public class Environment {
 
     public String getStringedIdentifier() {
         return randomId.toString();
+    }
+
+    public String createHref(WrappedFile file) {
+        try {
+            return "/environment/explore/" + getStringedIdentifier() + "?path=\"" + EncryptionUtil.encrypt(file.getFullPath()) + "\"";
+        } catch (Exception e) {
+            return "/environment/view/" + getStringedIdentifier();
+        }
     }
 }

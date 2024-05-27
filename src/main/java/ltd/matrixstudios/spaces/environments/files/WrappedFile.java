@@ -26,11 +26,13 @@ public class WrappedFile {
     private boolean directory;
     private long lastModified;
     private long size;
+    private String fullPath;
 
     public WrappedFile(File file) {
         this.name = file.getName();
         this.directory = file.isDirectory();
         this.lastModified = file.lastModified();
+        this.fullPath = file.getPath();
 
         try (FileChannel channel = FileChannel.open(file.toPath(), StandardOpenOption.READ)) {
             this.size = channel.size();

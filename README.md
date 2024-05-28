@@ -18,6 +18,8 @@ Spaces has many features such as
 - automated organization of files
 - fail-safe backup system
 - more user-friendly compatability options
+- ability to encrypt files and password-lock specific files on the file explorer
+- permission management similar to a git repo (read/write/admin/maintain) 
 
 # using
 

@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 public class GETExploreEnvironment {
     @RequestMapping(value = {"/environment/explore/{id}"}, method = {RequestMethod.GET})
     public ModelAndView exploreBasedOnId(@PathVariable String id, @RequestParam String path) {
-        System.out.println("Received explore request");
         ModelAndView modelAndView = new ModelAndView("editor");
         UUID formattedId = UUID.fromString(id);
         Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);

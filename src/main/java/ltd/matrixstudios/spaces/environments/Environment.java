@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ltd.matrixstudios.spaces.SpacesApplication;
 import ltd.matrixstudios.spaces.environments.files.WrappedFile;
+import ltd.matrixstudios.spaces.environments.labels.Label;
 import ltd.matrixstudios.spaces.util.EncryptionUtil;
 
 import java.io.*;
@@ -25,6 +26,7 @@ public class Environment {
     private String name;
     private String description;
     private String pathToEnvironment;
+    private List<Label> labels = new ArrayList<>();
 
     public Environment(String name) {
         this.randomId = UUID.randomUUID();

@@ -15,10 +15,7 @@
         <h2>Navigation</h2>
         <ul>
             <li><i class="fas fa-home"></i> Home</li>
-            <li><i class="fas fa-file-alt"></i> Documents</li>
-            <li><i class="fas fa-image"></i> Pictures</li>
-            <li><i class="fas fa-music"></i> Music</li>
-            <li><i class="fas fa-film"></i> Videos</li>
+            <li><i class="fas fa-file-alt"></i> Security</li>
         </ul>
     </aside>
     <div class="content">
@@ -69,10 +66,41 @@
             <h2>Environment Search</h2>
             <label class="setting-item">
                 <div class="setting-label">Environment Search</div>
-                <input type="text" placeholder="Search For Somrthing..." class="setting-textbox", id="search-query">
-                <input type="text" placeholder="Specify Search Depth..." class="setting-textbox", id="search-depth">
+                <input type="text" placeholder="Search For Somrthing..." class="setting-textbox" id="search-query">
+                <input type="text" placeholder="Specify Search Depth..." class="setting-textbox" id="search-depth">
                 <button class="setting-button", id="search-button">Search</button>
             </label>
+            <h2>Enviornment Labels</h2>
+            <label class="setting-item">
+                <div class="setting-label">Create a Label</div>
+                <input type="text" placeholder="Type the label identifier" class="setting-textbox" id="label-id">
+                <input type="text" placeholder="Type the label name" class="setting-textbox" id="label-name">
+                <input type="text" placeholder="Type the label description" class="setting-textbox" id="label-description">
+                <button class="setting-button", id="label-button">Add Label</button>
+            </label>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Label Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Thymeleaf iteration -->
+                    <tr th:each="label : ${environment.getLabels()}">
+                        <td th:text="${label.getName()}">Label Name</td>
+                        <td th:text="${label.getDescription()}">Description</td>
+                        <td>
+                            <!-- Form for delete action -->
+                            <form th:action="@{/deleteProject}" method="post">
+                                <input type="hidden" th:name="labelId" th:value="${label.getId()}" />
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <h2>Environment Settings</h2>
             <label class="setting-item">
                 <div class="setting-label">Environment Destination</div>
@@ -109,18 +137,12 @@
         //
         document.querySelector('.apply-button').addEventListener('click', function() {
             // Gather the updated settings data
-            const updatedSettings = {
+            const data = {
                 autoClean: document.getElementById('auto-clean').checked,
                 environment: document.getElementById('environment-textbox').value,
                 description: document.getElementById('description-textbox').value
             };
 
-            // Send the updated settings data to your endpoint
-            sendDataToEndpoint(updatedSettings);
-        });
-
-        // Function to send data to the endpoint
-        function sendDataToEndpoint(data) {
             const endpointUrl = 'http://localhost:8080/environment/update/' + [[${environment.getStringedIdentifier()}]];
 
             // Send a POST request with the settings data as JSON
@@ -128,7 +150,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                },
+            },
                 body: JSON.stringify(data)
             })
             .then(response => {
@@ -145,7 +167,7 @@
                 console.error('Error applying settings:', error);
                 // Handle errors here
             });
-        }
+        });
 
         //
         // Function to handle the zip action
@@ -181,6 +203,32 @@
             + [[${environment.getStringedIdentifier()}]] + '?depth=' + depth + '&keyword="' + term + '"';
 
             window.location.href = endpointUrl;
+        });
+
+        //
+        // Function to handle label creation
+        //
+        document.getElementById("label-button").addEventListener('click', function () {
+            const data = {
+                id: document.getElementById("label-id").value,
+                name: document.getElementById("label-name").value,
+                description: document.getElementById("label-description").value
+            }
+
+            let endpointUrl = 'http://localhost:8080/environment/' + [[${environment.getStringedIdentifier()}]] + '/lables/add';
+
+            fetch(endpointUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(data)
+            })
+            .then(resp => resp.status === 200 ? resp.blob() : Promise.reject('something went wrong'))
+            .then(blob => {
+                console.log("added the label")
+            })
+            .catch(() => alert('Unable to handle this action! Please try again later.'));
         });
     });
 </script>

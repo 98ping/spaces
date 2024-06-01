@@ -87,13 +87,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Thymeleaf iteration -->
                     <tr th:each="label : ${environment.getLabels()}">
                         <td th:text="${label.getName()}">Label Name</td>
                         <td th:text="${label.getDescription()}">Description</td>
                         <td>
                             <!-- Form for delete action -->
-                            <form th:action="@{/deleteProject}" method="post">
+                            <form th:action="@{/environment/{id}/labels/remove/{labelId}(labelId=${label.getId()}, id=${environment.getStringedIdentifier()})}" method="post">
                                 <input type="hidden" th:name="labelId" th:value="${label.getId()}" />
                                 <button type="submit" class="delete-button">Delete</button>
                             </form>
@@ -215,7 +214,7 @@
                 description: document.getElementById("label-description").value
             }
 
-            let endpointUrl = 'http://localhost:8080/environment/' + [[${environment.getStringedIdentifier()}]] + '/lables/add';
+            let endpointUrl = 'http://localhost:8080/environment/' + [[${environment.getStringedIdentifier()}]] + '/labels/add';
 
             fetch(endpointUrl, {
                 method: 'POST',

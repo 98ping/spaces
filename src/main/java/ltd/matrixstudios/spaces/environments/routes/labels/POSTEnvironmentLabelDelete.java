@@ -27,7 +27,6 @@ public class POSTEnvironmentLabelDelete {
     @RequestMapping(value = {"/environment/{id}/labels/remove/{labelId}"}, method = {RequestMethod.POST})
     public ModelAndView addEnvironmentLabels(@PathVariable("id") String id, @PathVariable("labelId") String labelId) {
         ModelAndView modelAndView = new ModelAndView("editor");
-        System.out.println(id);
         UUID formattedId = UUID.fromString(id);
         Environment environment = SpacesApplication.instance.getEnvironmentManager().getEnvironmentById(formattedId);
 

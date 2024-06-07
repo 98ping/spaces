@@ -146,6 +146,7 @@ body {
 .setting-description {
     color: #999; /* Slightly darker color */
     margin-top: 5px; /* Add some space between label and description */
+    margin-left: 5px;
 }
 
 /* Checkbox and select styles */
@@ -205,7 +206,7 @@ input[type="text"].setting-textbox {
     width: 300px; /* Adjust the width */
 }
 
-input[type="text"].font-textbox::placeholder {
+input[type="text"].setting-textbox::placeholder {
     color: #ccc; /* Placeholder color */
 }
 

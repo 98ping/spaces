@@ -66,9 +66,23 @@
             <h2>Environment Search</h2>
             <label class="setting-item">
                 <div class="setting-label">Environment Search</div>
-                <input type="text" placeholder="Search For Somrthing..." class="setting-textbox" id="search-query">
+                <input type="text" placeholder="Search For Something..." class="setting-textbox" id="search-query">
                 <input type="text" placeholder="Specify Search Depth..." class="setting-textbox" id="search-depth">
                 <button class="setting-button", id="search-button">Search</button>
+            </label>
+            <h2>Environment Cleaning</h2>
+            <label class="setting-item">
+                <div class="setting-label">Environment Cleaning Settings</div>
+
+                <div class="setting-description">Should the search check for folders?</div>
+                <input type="checkbox" class="setting-checkbox" id="clean-folders">
+
+                <div class="setting-description">Delete items based on last modified?</div>
+                <input type="checkbox" class="setting-checkbox" id="clean-based-last-modified">
+
+                <input type="text" placeholder="Search for an extension, name, or folder.." class="setting-textbox" id="clean-query">
+
+                <button class="setting-button", id="search-button">Clean</button>
             </label>
             <h2>Enviornment Labels</h2>
             <label class="setting-item">
@@ -116,7 +130,7 @@
                 <div class="setting-description">Automaticially attempt to clean the environment whenever it is loaded
                     into memory.
                 </div>
-                <input type="checkbox" class="auto-clean-checkbox", id="auto-clean">
+                <input type="checkbox" class="setting-textbox", id="auto-clean">
             </label>
             <label class="setting-item">
                 <div class="setting-label">Zip File Contents</div>

@@ -1,4 +1,4 @@
-package ltd.matrixstudios.spaces.login.processing;
+package ltd.matrixstudios.spaces.login;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,5 +1,6 @@
 package ltd.matrixstudios.spaces.security;
 
+import ltd.matrixstudios.spaces.login.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,9 @@ public class WebSecurityController {
     @Autowired
     public BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    public LoginSuccessHandler successHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
@@ -30,6 +34,7 @@ public class WebSecurityController {
                 ).csrf(csrf -> csrf
                         .ignoringRequestMatchers("/**"))
                 .formLogin((form) -> form
+                        .successHandler(successHandler)
                         .loginPage("/login")
                         .permitAll()
                 )

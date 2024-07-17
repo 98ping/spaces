@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaces</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/homepage.css" th:href="@{/css/homepage.css}"/>
+</head>
+
+
+<body>
+<div class="container">
+    <div class="main-content">
+        <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+        <h1>Login Page</h1>
+        <p>Enter your user credentials to get started!</p>
+        <form action="/login" method="post" th:action="@{/login}">
+            <div>
+                <input class="input-textbox" type="text" id="username" name="username" placeholder="Username..."
+                       th:value="${username}">
+            </div>
+            <div>
+                <input class="input-textbox" type="text" id="password" name="password" placeholder="Password..."
+                       th:value="${password}">
+            </div>
+
+            <div>
+                <button class="submit-button" type="submit">Go!</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

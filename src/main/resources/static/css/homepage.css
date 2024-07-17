@@ -15,6 +15,44 @@ body {
     color: #fff;
 }
 
+/* Button Styles */
+.submit-button {
+    margin-top: 10px; /* Add some space above the reset button */
+    padding: 10px 30px; /* Increase padding for a longer button */
+    background-color: #4CAF50; /* Red background */
+    color: #ffffff; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 0; /* Make the button box-shaped */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049; /* Darker red on hover */
+}
+
+/* Custom textbox styling */
+input[type="text"].input-textbox {
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #555; /* Darker background for inputs */
+    color: #ffffff; /* White text color for inputs */
+    border: none; /* Remove border */
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono font */
+    width: 300px; /* Adjust the width */
+}
+
+input[type="text"].input-textbox::placeholder {
+    color: #ccc; /* Placeholder color */
+}
+
+/* Increase specificity to target only the textbox setting */
+.setting-item > input[type="text"].font-textbox {
+    margin-left: 10px;
+}
+
 /* Container styles */
 .container {
     display: flex;

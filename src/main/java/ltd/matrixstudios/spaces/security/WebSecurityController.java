@@ -27,18 +27,20 @@ public class WebSecurityController {
     @Autowired
     public LoginSuccessHandler successHandler;
 
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
-                ).csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/**"))
-                .formLogin((form) -> form
+                ).formLogin((form) -> form
                         .successHandler(successHandler)
+                        .failureUrl("/login?error=true")
                         .loginPage("/login")
                         .permitAll()
-                )
-                .logout(LogoutConfigurer::permitAll);
+                );
 
         return http.build();
     }

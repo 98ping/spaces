@@ -7,10 +7,16 @@ import java.util.UUID;
 
 @Getter @Setter
 public class SpaceUser {
-    public UUID id = UUID.randomUUID();
-    public String username;
-    public String displayName;
-    public String password;
+    private UUID id = UUID.randomUUID();
+    private String username;
+    private String displayName;
+    private String password;
+
+    public SpaceUser() {
+        this.username = "Guest";
+        this.displayName = "Guest";
+        this.password = "None";
+    }
 
     public SpaceUser(String username, String displayName, String password) {
         this.username = username;

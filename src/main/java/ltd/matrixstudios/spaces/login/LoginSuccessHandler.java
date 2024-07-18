@@ -9,9 +9,11 @@ import ltd.matrixstudios.spaces.user.model.SpaceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
@@ -29,12 +31,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         request.getSession().setAttribute("user", userFromAuthentication);
 
-        String redirect = "/";
+        String redirect = "/panel";
 
         if (request.getAttribute("redirect") != null) {
             redirect = (String) request.getAttribute("redirect");
         }
 
+        System.out.println(userFromAuthentication.getDisplayName() + " has been successfully logged in!");
         response.sendRedirect(redirect);
     }
 }

@@ -7,7 +7,11 @@ import lombok.Getter;
 import ltd.matrixstudios.spaces.directories.DirectoryManager;
 import ltd.matrixstudios.spaces.environments.EnvironmentManager;
 import ltd.matrixstudios.spaces.identifiers.IdentifierService;
+import ltd.matrixstudios.spaces.user.UserRepository;
+import ltd.matrixstudios.spaces.user.UserService;
+import ltd.matrixstudios.spaces.user.model.SpaceUser;
 import ltd.matrixstudios.spaces.util.EncryptionUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

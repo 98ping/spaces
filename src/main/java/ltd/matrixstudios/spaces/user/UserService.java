@@ -2,6 +2,7 @@ package ltd.matrixstudios.spaces.user;
 
 import jakarta.annotation.PostConstruct;
 import ltd.matrixstudios.spaces.user.model.SpaceUser;
+import ltd.matrixstudios.spaces.user.model.SpaceUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +25,10 @@ public class UserService implements UserDetailsService {
     @PostConstruct
     public void onEnable() {
         if (userRepository.findByUsername("admin") == null) {
-            userRepository.save(new SpaceUser("admin", bCryptPasswordEncoder.encode("ChangeMe123")));
+            SpaceUser admin = new SpaceUser("admin", bCryptPasswordEncoder.encode("ChangeMe123"));
+            admin.getRoles().add(SpaceUserRole.ADMIN);
+
+            userRepository.save(admin);
             System.out.println("Did not find an existing administrator account so we created one instead. Remember to change the password to this account!");
         }
     }

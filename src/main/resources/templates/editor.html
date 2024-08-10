@@ -54,14 +54,23 @@
             </div>
         </div>
         <div class="project-description">
+            <div class="setting-label">Filter Environment</div>
+            <select>
+                <option>Name</option>
+                <option>Date Modified</option>
+                <option>Password Protected</option>
+            </select>
+            <button class="setting-button" id="sort-button">Sort</button>
+        </div>
+        <div class="project-description">
             <h2>Environment Details</h2>
             <div class="description-section">
                 <h3>Description</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit, libero ut convallis vestibulum, turpis nisi accumsan nunc, vel tristique quam justo id ipsum.</p>
+                <p>Nothing Here Yet!</p>
             </div>
             <div class="description-section">
                 <h3>File Path</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit, libero ut convallis vestibulum, turpis nisi accumsan nunc, vel tristique quam justo id ipsum.</p>
+                <p>Nothing Here Yet!</p>
             </div>
             <h2>Environment Search</h2>
             <label class="setting-item">
@@ -95,7 +104,7 @@
                 <input type="text" placeholder="Type an extension, name, or folder.." class="setting-textbox" id="clean-query">
             </label>
             <label class="setting-item">
-                <button class="setting-button", id="search-button">Clean</button>
+                <button class="setting-button", id="clean-button">Clean</button>
             </label>
 
             
@@ -127,9 +136,37 @@
         </div>
     </div>
 </div>
+<div id="contextMenu" class="context-menu">
+    <ul>
+        <li><a href="#">Open</a></li>
+        <li><a href="#">Rename</a></li>
+        <li><a href="#">Delete</a></li>
+    </ul>
+</div>
 </body>
 <script th:inline="javascript">
     document.addEventListener("DOMContentLoaded", function() {
+        //
+        // Logic to handle our custom right-click logic
+        //
+        const contextMenu = document.getElementById("contextMenu");
+        const fileItems = document.querySelectorAll(".file-table tbody tr");
+
+        fileItems.forEach(item => {
+            item.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+
+                // Set the position of the context menu
+                contextMenu.style.top = `${e.pageY}px`;
+                contextMenu.style.left = `${e.pageX}px`;
+                contextMenu.style.display = "block";
+            });
+        });
+
+        document.addEventListener("click", function () {
+            contextMenu.style.display = "none"; // Hide the context menu on click anywhere else
+        });
+
         //
         // Function to handle the click event of the "Apply" button
         //

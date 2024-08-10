@@ -263,3 +263,38 @@ td form {
 .delete-button:hover {
     background-color: #d32f2f;
 }
+
+.context-menu {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    width: 150px;
+    z-index: 1000;
+}
+
+.context-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.context-menu ul li {
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.context-menu ul li:hover {
+    background-color: #555;
+}
+
+.context-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.context-menu ul li a:hover {
+    text-decoration: underline;
+}

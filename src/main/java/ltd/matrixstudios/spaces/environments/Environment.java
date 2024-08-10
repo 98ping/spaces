@@ -6,6 +6,7 @@ import lombok.Setter;
 import ltd.matrixstudios.spaces.SpacesApplication;
 import ltd.matrixstudios.spaces.environments.files.WrappedFile;
 import ltd.matrixstudios.spaces.environments.labels.Label;
+import ltd.matrixstudios.spaces.environments.security.FileSecurityInformation;
 import ltd.matrixstudios.spaces.util.EncryptionUtil;
 
 import java.io.*;
@@ -27,6 +28,8 @@ public class Environment {
     private String description;
     private String pathToEnvironment;
     private List<Label> labels = new ArrayList<>();
+    // Look for a better identifier for this. Should be fine as of right now though.
+    private Map<String, FileSecurityInformation> securedFiles = new HashMap<>();
 
     public Environment(String name) {
         this.randomId = UUID.randomUUID();

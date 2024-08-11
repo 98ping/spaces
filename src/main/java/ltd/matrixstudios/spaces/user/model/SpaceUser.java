@@ -2,6 +2,7 @@ package ltd.matrixstudios.spaces.user.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import ltd.matrixstudios.spaces.environments.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,4 +37,5 @@ public class SpaceUser {
     public boolean has(SpaceUserRole role) {
         return roles.contains(role);
     }
+
 }

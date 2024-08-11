@@ -19,7 +19,7 @@ Spaces has many features such as
 - fail-safe backup system
 - more user-friendly compatability options
 - ability to encrypt files and password-lock specific files on the file explorer
-- permission management similar to a git repo (read/write/admin/maintain) 
+- divide permission management into 2 categories: global and per environment
 
 # using
 

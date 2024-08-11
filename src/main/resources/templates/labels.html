@@ -16,6 +16,7 @@
         <ul>
             <li><i class="fas fa-home"></i> Home</li>
             <li><i class="fas fa-file-alt"></i> Security</li>
+            <li><i class="fas fa-file-alt"></i> Labels</li>
         </ul>
     </aside>
     <div class="content">
@@ -67,3 +68,30 @@
 </div>
 </body>
 </html>
+<script th:inline="javascript">
+    //
+    // Function to handle label creation
+    //
+    document.getElementById("label-button").addEventListener('click', function () {
+        const data = {
+            id: document.getElementById("label-id").value,
+            name: document.getElementById("label-name").value,
+            description: document.getElementById("label-description").value
+        }
+
+        let endpointUrl = 'http://localhost:8080/environment/' + [[${environment.getStringedIdentifier()}]] + '/labels/add';
+
+        fetch(endpointUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(resp => resp.status === 200 ? resp.blob() : Promise.reject('something went wrong'))
+            .then(blob => {
+                console.log("added the label")
+            })
+            .catch(() => alert('Unable to handle this action! Please try again later.'));
+    });
+</script>

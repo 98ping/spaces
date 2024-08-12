@@ -3,7 +3,9 @@ package ltd.matrixstudios.spaces.user;
 import jakarta.annotation.PostConstruct;
 import ltd.matrixstudios.spaces.user.model.SpaceUser;
 import ltd.matrixstudios.spaces.user.model.SpaceUserRole;
+import ltd.matrixstudios.spaces.util.cache.ExpiringCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ExpressionInvocationTargetException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -21,6 +27,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     public BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public ExpiringCache<UUID, SpaceUser> expiringBackingUserCache
+            = new ExpiringCache<>(TimeUnit.MINUTES.toMillis(3L));
 
     @PostConstruct
     public void onEnable() {
@@ -42,5 +51,18 @@ public class UserService implements UserDetailsService {
         }
 
         return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
+    }
+
+    public Map<UUID, SpaceUser> getOrMapUsers() {
+        if (expiringBackingUserCache.clear()) {
+            Map<UUID, SpaceUser> resultMap = new HashMap<>();
+
+            userRepository.findAll()
+                    .forEach(user -> expiringBackingUserCache.set(user.getId(), user));
+
+            return expiringBackingUserCache.get();
+        } else {
+            return expiringBackingUserCache.get();
+        }
     }
 }

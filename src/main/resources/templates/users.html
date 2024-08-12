@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaces</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/editor.css" th:href="@{/css/editor.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha384-mQA6Pj4R2FpQ5axlRUOfshBxMFWzJo3FdXpm2z8v8hbqOeHzGsVz8aqw/6Tw3OgZ" crossorigin="anonymous">
+</head>
+<body class="dark-mode">
+<div class="container">
+    <aside class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><i class="fas fa-home"></i> Home</li>
+            <li><i class="fas fa-file-alt"></i> Security</li>
+            <li><i class="fas fa-file-alt"></i> Labels</li>
+        </ul>
+    </aside>
+    <div class="content">
+        <div class="project-description">
+
+            <h2>Spaces Users</h2>
+            <label class="setting-item">
+                <div class="setting-label">Use the below table to edit, add, remove, and assign roles to any user on the site. You can also create user accounts that can be logged into.</div>
+            </label>
+            <table>
+                <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Display Name</th>
+                    <th>Role Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.getUsername()}">User Name</td>
+                    <td th:text="${user.getDisplayName()}">Display Name</td>
+                    <td th:text="${user.getRoles().size()}">Role Count</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

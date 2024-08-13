@@ -25,7 +25,7 @@ public class POSTUserWipeExistingRoles {
     @RequestMapping(value = {"/user/{id}/roles/wipe"}, method = {RequestMethod.POST})
     public String delegateRole(HttpServletRequest request, @PathVariable String id) {
         // Make sure requester has the permissions they need
-        SpaceUser requester = (SpaceUser) request.getAttribute("user");
+        SpaceUser requester = (SpaceUser) request.getSession().getAttribute("user");
 
         if (requester == null || !requester.has(SpaceUserRole.ADMIN)) {
             throw new RuntimeException("You do not have permission to request this endpoint!");

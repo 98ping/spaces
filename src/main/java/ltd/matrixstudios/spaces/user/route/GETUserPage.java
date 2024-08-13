@@ -25,7 +25,7 @@ public class GETUserPage {
     @RequestMapping(value = {"/users"}, method = {RequestMethod.GET})
     public ModelAndView getUserPage(HttpServletRequest request) {
         // Make sure requester has the permissions they need
-        SpaceUser requester = (SpaceUser) request.getAttribute("user");
+        SpaceUser requester = (SpaceUser) request.getSession().getAttribute("user");
 
         if (requester == null || !requester.has(SpaceUserRole.ADMIN)) {
             throw new RuntimeException("You do not have permission to request this endpoint!");

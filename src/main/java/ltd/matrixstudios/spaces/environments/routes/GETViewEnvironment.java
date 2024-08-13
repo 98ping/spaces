@@ -1,5 +1,6 @@
 package ltd.matrixstudios.spaces.environments.routes;
 
+import jakarta.servlet.http.HttpServletRequest;
 import ltd.matrixstudios.spaces.SpacesApplication;
 import ltd.matrixstudios.spaces.environments.Environment;
 import ltd.matrixstudios.spaces.environments.files.WrappedFile;

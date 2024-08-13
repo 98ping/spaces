@@ -55,14 +55,10 @@ public class UserService implements UserDetailsService {
 
     public Map<UUID, SpaceUser> getOrMapUsers() {
         if (expiringBackingUserCache.clear()) {
-            Map<UUID, SpaceUser> resultMap = new HashMap<>();
-
             userRepository.findAll()
                     .forEach(user -> expiringBackingUserCache.set(user.getId(), user));
 
-            return expiringBackingUserCache.get();
-        } else {
-            return expiringBackingUserCache.get();
         }
+        return expiringBackingUserCache.get();
     }
 }

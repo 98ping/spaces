@@ -30,6 +30,7 @@
             <label class="setting-item">
                 <div class="setting-label">Use the below table to edit, add, remove, and assign roles to any user on the site. You can also create user accounts that can be logged into.</div>
             </label>
+            <div class="setting-label" th:text="'Page ' + ${page} + '/' + ${maxPages}"></div>
             <table>
                 <thead>
                 <tr>
@@ -46,6 +47,8 @@
                 </tr>
                 </tbody>
             </table>
+            <button class="setting-button" id="previous-page">Previous Page</button>
+            <button class="setting-button" id="next-page">Next Page</button>
         </div>
     </div>
 </div>

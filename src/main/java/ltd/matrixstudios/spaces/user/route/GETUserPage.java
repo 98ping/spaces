@@ -12,8 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -23,7 +27,7 @@ public class GETUserPage {
     @Autowired public UserService userService;
 
     @RequestMapping(value = {"/users"}, method = {RequestMethod.GET})
-    public ModelAndView getUserPage(HttpServletRequest request) {
+    public ModelAndView getUserPage(HttpServletRequest request, @RequestParam(name = "page", defaultValue = "1") int page) {
         // Make sure requester has the permissions they need
         SpaceUser requester = (SpaceUser) request.getSession().getAttribute("user");
 
@@ -33,7 +37,22 @@ public class GETUserPage {
 
         ModelAndView modelAndView = new ModelAndView("users");
 
-        modelAndView.addObject("users", userService.getOrMapUsers().values());
+        List<SpaceUser> users = userService.getOrMapUsers().values().stream().toList();
+        List<SpaceUser> result = new ArrayList<>();
+        double maxPages = Math.ceil(users.size() / 10.0);
+
+        if (maxPages >= page) {
+            int end = page * 10;
+            for (int i = end - 10; i < end; i++) {
+                if (i < users.size()) {
+                    result.add(users.get(i));
+                }
+            }
+        }
+
+        modelAndView.addObject("users", result);
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("maxPages", Math.round(maxPages));
 
         return modelAndView;
     }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaces</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/homepage.css" th:href="@{/css/homepage.css}"/>
+</head>
+
+
+<body>
+<div class="container">
+    <div class="main-content">
+        <img th:src="@{/img/logo.png}" alt="Logo" class="logo">
+        <h1>Something Went Wrong!</h1>
+        <p>Unable to process your request: </p>
+        <p th:text="${error}"></p>
+        <div>
+            <button class="submit-button" type="submit">Refresh!</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

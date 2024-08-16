@@ -1,6 +1,7 @@
 package ltd.matrixstudios.spaces.user.route;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import ltd.matrixstudios.spaces.SpacesApplication;
 import ltd.matrixstudios.spaces.environments.Environment;
 import ltd.matrixstudios.spaces.environments.files.WrappedFile;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,12 +29,12 @@ public class GETUserPage {
     @Autowired public UserService userService;
 
     @RequestMapping(value = {"/users"}, method = {RequestMethod.GET})
-    public ModelAndView getUserPage(HttpServletRequest request, @RequestParam(name = "page", defaultValue = "1") int page) {
+    public ModelAndView getUserPage(HttpServletRequest request, HttpServletResponse response, @RequestParam(name = "page", defaultValue = "1") int page) throws IOException {
         // Make sure requester has the permissions they need
         SpaceUser requester = (SpaceUser) request.getSession().getAttribute("user");
 
         if (requester == null || !requester.has(SpaceUserRole.ADMIN)) {
-            throw new RuntimeException("You do not have permission to request this endpoint!");
+            response.sendError(404, "You do not have permission to view this page!");
         }
 
         ModelAndView modelAndView = new ModelAndView("users");

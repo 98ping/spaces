@@ -15,6 +15,7 @@ import java.io.File;
 public class DirectoryManager {
     private File dataPath;
     private File environmentPath;
+    private File templatePath;
 
     public DirectoryManager() {
         setupAllDirectories();
@@ -35,5 +36,12 @@ public class DirectoryManager {
             environmentsSection.mkdirs();
         }
         this.environmentPath = environmentsSection;
+
+        File templatesSection = new File(dataPath.getPath() + "\\templates");
+
+        if (!templatesSection.exists()) {
+            templatesSection.mkdirs();
+        }
+        this.templatePath = templatesSection;
     }
 }

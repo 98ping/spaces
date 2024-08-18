@@ -6,6 +6,7 @@ import com.google.gson.LongSerializationPolicy;
 import lombok.Getter;
 import ltd.matrixstudios.spaces.directories.DirectoryManager;
 import ltd.matrixstudios.spaces.environments.EnvironmentManager;
+import ltd.matrixstudios.spaces.environments.templates.TemplateManager;
 import ltd.matrixstudios.spaces.identifiers.IdentifierService;
 import ltd.matrixstudios.spaces.user.UserRepository;
 import ltd.matrixstudios.spaces.user.UserService;
@@ -26,6 +27,7 @@ public class SpacesApplication {
 			.create();
 
 	@Getter private DirectoryManager directoryManager;
+	@Getter private TemplateManager templateManager;
 	@Getter private EnvironmentManager environmentManager;
 	@Getter private IdentifierService identifierService;
 	@Getter private EncryptionUtil encryptionUtil;
@@ -41,6 +43,7 @@ public class SpacesApplication {
 		directoryManager = new DirectoryManager();
 		environmentManager = new EnvironmentManager();
 		identifierService = new IdentifierService();
+		templateManager = new TemplateManager();
 		encryptionUtil = new EncryptionUtil();
 	}
 }
